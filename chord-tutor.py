@@ -3,8 +3,9 @@ import time
 
 PRACTICE_FILENAME = "chord_list.txt"
 CHORD_POSITION_FILENAME = "chord_position.txt"
-DELAY = 3
-RANDOM = False
+DISPLAY_FINGER = False
+DELAY = 5
+RANDOM = True
 
 
 practice_chords = []
@@ -40,13 +41,15 @@ while True:
 
     print("Chord: ", chord)
     print()
-    for i in range(5, -1, -1):
-        s = "X┣" if i < int(chord_position[chord][1]) else " ┣"
-        for j in range(4):
-            if int(chord_position[chord][0][i]) == j + 1:
-                s += "━━o━━┿"
-            else:
-                s += "━━━━━┿"
-        print(s)
-    print('\n')
+
+    if DISPLAY_FINGER:
+        for i in range(5, -1, -1):
+            s = "X┣" if i < int(chord_position[chord][1]) else " ┣"
+            for j in range(4):
+                if int(chord_position[chord][0][i]) == j + 1:
+                    s += "━━o━━┿"
+                else:
+                    s += "━━━━━┿"
+            print(s)
+        print('\n')
     time.sleep(DELAY)
